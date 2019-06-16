@@ -1,5 +1,6 @@
 package br.com.curso.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,9 @@ public class CategoriaService {
 	public Categoria buscar(Integer id) {
 		Optional<Categoria> categoria= repo.findById(id);
 		return categoria.orElse(null);
+	}
+	
+	public void salvar(List<Categoria> categorias) {
+		
 	}
 }
