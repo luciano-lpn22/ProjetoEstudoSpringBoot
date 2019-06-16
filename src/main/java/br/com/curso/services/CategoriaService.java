@@ -19,7 +19,5 @@ public class CategoriaService {
 		return categoria.orElse(null);
 	}
 	
-	public void salvar(List<Categoria> categorias) {
-		
-	}
+
 }
