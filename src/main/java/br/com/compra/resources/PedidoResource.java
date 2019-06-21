@@ -16,7 +16,7 @@ public class PedidoResource {
 	@Autowired
 	PedidoService service;
 	
-	@RequestMapping(value = "{/id}",method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
 	public ResponseEntity<?> buscar(@PathVariable Integer id){
 		Pedido pedido=service.buscar(id);
 		return ResponseEntity.ok(pedido);
