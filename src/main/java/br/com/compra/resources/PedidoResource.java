@@ -21,4 +21,7 @@ public class PedidoResource {
 		Pedido pedido=service.buscar(id);
 		return ResponseEntity.ok(pedido);
 	}
+	
+	
+	
 }
