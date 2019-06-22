@@ -3,10 +3,12 @@ package br.com.compra.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.compra.domain.Categoria;
 import br.com.compra.repositories.CategoriaRepository;
+import br.com.compra.services.exceptions.DataIntegrityException;
 import br.com.compra.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -27,6 +29,17 @@ public class CategoriaService {
 	public Categoria update(Categoria categoria) {
 		find(categoria.getId());
 		return repo.save(categoria);
+	}
+
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Categoria vinculada ao produto não é possível excluir");
+		}
+		
+		
 	}
 	
 
