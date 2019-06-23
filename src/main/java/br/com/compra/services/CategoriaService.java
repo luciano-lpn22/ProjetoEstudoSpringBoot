@@ -3,6 +3,8 @@ package br.com.compra.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.compra.domain.Categoria;
+import br.com.compra.dto.CategoriaDTO;
 import br.com.compra.repositories.CategoriaRepository;
 import br.com.compra.services.exceptions.DataIntegrityException;
 import br.com.compra.services.exceptions.ObjectNotFoundException;
@@ -54,6 +57,10 @@ public class CategoriaService {
 		PageRequest pageRequest=PageRequest.of(page, linesPerPage,Direction.valueOf(direction) , orderby);
 		
 		return repo.findAll(pageRequest);
+	}
+
+	public Categoria fromDTO(@Valid CategoriaDTO dto) {
+		return new Categoria(dto.getId(),dto.getNome());
 	}
 	
 
