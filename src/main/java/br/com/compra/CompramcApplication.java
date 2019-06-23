@@ -38,27 +38,21 @@ public class CompramcApplication implements  CommandLineRunner{
 	CategoriaRepository categoriaRepository;
 	@Autowired
 	ProdutoRepository produtoRepository;
-	
 	@Autowired
 	CidadeRepository cidadeRepository;
-	
 	@Autowired
 	EstadoRepository estadoRepository;
-	
 	@Autowired
 	EnderecoRepository enderecoRepository;
-	
 	@Autowired
 	ClienteRepository clienteRepository;
-	
 	@Autowired
 	PagamentoRepository pagamentoRepository;
-	
 	@Autowired
 	PedidoRepository pedidoRepository;
-	
 	@Autowired
 	ItemPedidoRepository itemPedidoRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CompramcApplication.class, args);
 	}
@@ -67,6 +61,12 @@ public class CompramcApplication implements  CommandLineRunner{
 		
 		Categoria c1= new Categoria(null,"Informatica");
 		Categoria c2= new Categoria(null,"Escritorio");
+		Categoria c3= new Categoria(null,"Cama Mesa e Banho");
+		Categoria c4= new Categoria(null,"Eletrônico");
+		Categoria c5= new Categoria(null,"Jardinagem");
+		Categoria c6= new Categoria(null,"Decoração");
+		Categoria c7= new Categoria(null,"Perfumaria");
+
 		
 		Produto p1 = new Produto("Computador", 2000.00);
 		Produto p2 = new Produto("Impressora", 800.00);
@@ -126,7 +126,7 @@ public class CompramcApplication implements  CommandLineRunner{
 		p3.getItens().addAll(Arrays.asList(ip2));
 		
 		
-		categoriaRepository.saveAll(Arrays.asList(c1,c2));
+		categoriaRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
