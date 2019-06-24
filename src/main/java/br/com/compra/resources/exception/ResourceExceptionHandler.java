@@ -16,18 +16,14 @@ import br.com.compra.services.exceptions.ObjectNotFoundException;
 public class ResourceExceptionHandler {
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFaund(ObjectNotFoundException e,HttpServletRequest request){
-		
 		StandardError erro= new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
-		return  ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(erro);
-		
+		return  ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(erro);	
 	}
 
 	@ExceptionHandler(DataIntegrityException.class)
 	public ResponseEntity<StandardError> dataIntegrity(DataIntegrityException e,HttpServletRequest request){
-		
 		StandardError erro= new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
 		return  ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(erro);
-		
 	}
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<StandardError> validation(MethodArgumentNotValidException e,HttpServletRequest request){
@@ -36,7 +32,6 @@ public class ResourceExceptionHandler {
 			erro.addtError(x.getField(), x.getDefaultMessage());
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(erro);
-		
 	}
 	
 }

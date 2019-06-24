@@ -79,4 +79,6 @@ public class CategoriaResource {
 		return ResponseEntity.ok(pageDto);
 	}
 	
+	
+	
 }
