@@ -16,6 +16,10 @@ public class Cidade implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	public Cidade() {}
+	
+	public Cidade(Integer id) {
+		this.id=id;
+	}
 	public Cidade(String nome) {
 		this.nome=nome;
 	}

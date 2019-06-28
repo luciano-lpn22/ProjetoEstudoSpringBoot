@@ -9,10 +9,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import br.com.compra.domain.Cidade;
 import br.com.compra.domain.Cliente;
+import br.com.compra.domain.Endereco;
+import br.com.compra.domain.enums.TipoCliente;
 import br.com.compra.dto.ClienteDTO;
+import br.com.compra.dto.ClienteNewDTO;
 import br.com.compra.repositories.ClienteRepository;
+import br.com.compra.repositories.EnderecoRepository;
 import br.com.compra.services.exceptions.DataIntegrityException;
 import br.com.compra.services.exceptions.ObjectNotFoundException;
 
@@ -21,6 +27,8 @@ public class ClienteService {
  
 	@Autowired
 	ClienteRepository repo;
+	@Autowired
+	EnderecoRepository enderecoRepository;
 	public Cliente find(Integer id){
 		Optional<Cliente> cliente=repo.findById(id);
 		return cliente.orElseThrow(()-> new ObjectNotFoundException("Objeto "+Cliente.class.getName()+" não encontrado ID: "+id));	
@@ -31,8 +39,14 @@ public class ClienteService {
 		return newObj;
 	}
 	public void update(Cliente cliente) {
-		find(cliente.getId());
-		repo.save(cliente);		
+		Cliente newObj=find(cliente.getId());
+		updateData(newObj,cliente);
+		repo.save(newObj);		
+	}
+	private void updateData(Cliente newObj, Cliente cliente) {
+			newObj.setNome(cliente.getNome());
+			newObj.setEmail(cliente.getEmail());
+			
 	}
 	public void delete(Integer id) {
 		find(id);
@@ -50,10 +64,40 @@ public class ClienteService {
 		PageRequest page=PageRequest.of(pagina, linePerPage, Direction.valueOf(direction), orderby);
 		return repo.findAll(page);
 	}
+	
 	public Cliente fromDTO(ClienteDTO dto) {
 		return new Cliente(dto.getNome(),dto.getEmail());
 	}
+	public Cliente fromDTO(ClienteNewDTO dto) {
+		Cliente cliente= new Cliente(	dto.getNome(),
+							dto.getEmail(),
+							dto.getCpfOuCnpj(),
+							TipoCliente.toEnum(dto.getTipo()));
+		
+		Cidade cidade=new Cidade(dto.getCidade_id());
+		Endereco endereco= new Endereco(dto.getLogradouro(),
+										dto.getNumero(),
+										dto.getComplemento(),
+										dto.getBairro(),
+										dto.getCep(),
+										cliente,
+										cidade);
+		cliente.getEnderecos().add(endereco);
+		cliente.getTelefones().add(dto.getTelefone1());
+		if (dto.getTelefone2()!=null) {
+			cliente.getTelefones().add(dto.getTelefone2());	
+		}
+		if (dto.getTelefone3()!=null) {
+			cliente.getTelefones().add(dto.getTelefone3());	
+		}
+		
+		return cliente;
+	}
+	@Transactional
 	public Cliente insert(Cliente cliente) {
-		return repo.save(cliente);
+		cliente.setId(null);
+		cliente= repo.save(cliente);
+		enderecoRepository.saveAll(cliente.getEnderecos());
+		return cliente;
 	}
 }

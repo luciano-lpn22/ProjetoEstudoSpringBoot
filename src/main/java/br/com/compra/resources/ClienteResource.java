@@ -17,6 +17,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.compra.domain.Cliente;
 import br.com.compra.dto.ClienteDTO;
+import br.com.compra.dto.ClienteNewDTO;
+import br.com.compra.repositories.EnderecoRepository;
 import br.com.compra.services.ClienteService;
 
 @RestController
@@ -25,6 +27,8 @@ public class ClienteResource {
 	
 	@Autowired
 	ClienteService service;
+	
+	
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
 	public ResponseEntity<Cliente> find(@PathVariable Integer id){
@@ -62,7 +66,7 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(ClienteDTO dto){
+	public ResponseEntity<Void> insert(@RequestBody ClienteNewDTO dto){
 		Cliente cliente = service.fromDTO(dto);
 		cliente=service.insert(cliente);
 		URI uri=ServletUriComponentsBuilder.fromCurrentRequest()
