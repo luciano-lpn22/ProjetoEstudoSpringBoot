@@ -2,6 +2,13 @@ package br.com.compra.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import br.com.compra.services.validation.ClienteInsert;
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 
 
@@ -9,20 +16,35 @@ public class ClienteNewDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(max = 120,min = 5, message = "O tamanho deveser maior que 5 e menor que 120")
 	private String nome;
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Email
 	private String email;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String cpfOuCnpj;
+	
 	private Integer tipo;
 	
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String logradouro;
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String numero;
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String complemento;
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String bairro;
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String cep;
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String telefone1;
+	
 	private String telefone2;
 	private String telefone3;
-	private Integer cidade_id;
+
+	private Integer cidadeId;
 	
 	public ClienteNewDTO() {}
 	public String getComplemento() {
@@ -97,11 +119,12 @@ public class ClienteNewDTO implements Serializable {
 	public void setTelefone3(String telefone3) {
 		this.telefone3 = telefone3;
 	}
-	public Integer getCidade_id() {
-		return cidade_id;
+	public Integer getCidadeId() {
+		return cidadeId;
 	}
-	public void setCidade_id(Integer cidade_id) {
-		this.cidade_id = cidade_id;
+	public void setCidadeId(Integer cidadeId) {
+		this.cidadeId = cidadeId;
 	}
+	
 	
 }

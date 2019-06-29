@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import br.com.compra.domain.Cliente;
 
+
 public class ClienteDTO implements Serializable{
 
 	/**

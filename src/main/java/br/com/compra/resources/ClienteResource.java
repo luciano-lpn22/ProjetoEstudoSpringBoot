@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.compra.domain.Cliente;
 import br.com.compra.dto.ClienteDTO;
 import br.com.compra.dto.ClienteNewDTO;
-import br.com.compra.repositories.EnderecoRepository;
 import br.com.compra.services.ClienteService;
 
 @RestController
@@ -66,7 +67,7 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody ClienteNewDTO dto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO dto){
 		Cliente cliente = service.fromDTO(dto);
 		cliente=service.insert(cliente);
 		URI uri=ServletUriComponentsBuilder.fromCurrentRequest()

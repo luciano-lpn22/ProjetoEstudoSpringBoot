@@ -74,7 +74,7 @@ public class ClienteService {
 							dto.getCpfOuCnpj(),
 							TipoCliente.toEnum(dto.getTipo()));
 		
-		Cidade cidade=new Cidade(dto.getCidade_id());
+		Cidade cidade=new Cidade(dto.getCidadeId());
 		Endereco endereco= new Endereco(dto.getLogradouro(),
 										dto.getNumero(),
 										dto.getComplemento(),
