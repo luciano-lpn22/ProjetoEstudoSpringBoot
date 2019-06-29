@@ -2,7 +2,6 @@ package br.com.compra.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -30,7 +29,6 @@ public class ClienteDTO implements Serializable{
 	private String nome;
 	
 	@NotEmpty(message = "Preenchimento Obrigatório")
-	@Email(message = "E-mail inválido")
 	private String email;
 	public Integer getId() {
 		return id;
