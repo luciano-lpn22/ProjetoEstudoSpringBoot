@@ -47,6 +47,7 @@ public class Pedido implements Serializable {
 	private Date instante;
 	
 	
+	
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "pedido")
 	private Pagamento pagamento;
 	
@@ -63,6 +64,13 @@ public class Pedido implements Serializable {
 	private Set<ItemPedido> itens= new HashSet<ItemPedido>();
 	
 	
+	public Double getValorTottal() {
+		Double soma =0.0;
+		for(ItemPedido ip: itens) {
+			soma=soma+ip.getSubTotal();
+		}
+		return soma;
+	}
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
