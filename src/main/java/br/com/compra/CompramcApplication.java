@@ -71,13 +71,36 @@ public class CompramcApplication implements  CommandLineRunner{
 		Produto p1 = new Produto("Computador", 2000.00);
 		Produto p2 = new Produto("Impressora", 800.00);
 		Produto p3 = new Produto("Mouse", 80.00);
+		Produto p4 = new Produto("Mesa de Escritorio",300.00);
+		Produto p5 = new Produto("Toalha",50.00);
+		Produto p6 = new Produto("Colcha",200.00);
+		Produto p7 = new Produto("TV true calor",1200.00);
+		Produto p8 = new Produto("Roçadeira",800.00);
+		Produto p9 = new Produto("Abajour",100.00);
+		Produto p10 = new Produto("Pendente",180.00);
+		Produto p11 = new Produto("Shampoo",90.00);
 		
-		c2.getProdutos().addAll(Arrays.asList(p2));
 		c1.getProdutos().addAll(Arrays.asList(p1,p3,p2));
+		c2.getProdutos().addAll(Arrays.asList(p2,p4));
+		c3.getProdutos().addAll(Arrays.asList(p5,p6));
+		c4.getProdutos().addAll(Arrays.asList(p1,p2,p3,p7));
+		c5.getProdutos().addAll(Arrays.asList(p8));
+		c6.getProdutos().addAll(Arrays.asList(p9,p10));
+		c7.getProdutos().addAll(Arrays.asList(p11));
 		
-		p1.getCategorias().addAll(Arrays.asList(c1));
-		p2.getCategorias().addAll(Arrays.asList(c1,c2));
-		p3.getCategorias().addAll(Arrays.asList(c1));
+		
+		
+		p1.getCategorias().addAll(Arrays.asList(c1,c4));
+		p2.getCategorias().addAll(Arrays.asList(c1,c2,c4));
+		p3.getCategorias().addAll(Arrays.asList(c1,c4));
+		p4.getCategorias().addAll(Arrays.asList(c2));
+		p5.getCategorias().addAll(Arrays.asList(c3));
+		p6.getCategorias().addAll(Arrays.asList(c3));
+		p7.getCategorias().addAll(Arrays.asList(c4));
+		p8.getCategorias().addAll(Arrays.asList(c5));
+		p9.getCategorias().addAll(Arrays.asList(c6));
+		p10.getCategorias().addAll(Arrays.asList(c6));
+		p11.getCategorias().addAll(Arrays.asList(c7));
 		
 		Estado est1= new Estado("Minas Gerais");
 		Estado est2= new Estado("São Paulo");
@@ -127,7 +150,7 @@ public class CompramcApplication implements  CommandLineRunner{
 		
 		
 		categoriaRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7));
-		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11));
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1,cid2,cid3));
