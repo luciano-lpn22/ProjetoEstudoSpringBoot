@@ -1,5 +1,7 @@
 package br.com.compra.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +35,10 @@ public class ProdutoResource {
 													@RequestParam(name="liePerPage",defaultValue = "24") Integer linePerPage,
 													@RequestParam(name="orderBy",defaultValue = "nome") String orderby,
 													@RequestParam(name="direction",defaultValue ="ASC")String direction){
-		
-		Page<Produto> produtosPage= service.search(nome, URL.decodeToList(categorias), page, linePerPage, orderby, direction);
-		return null;//ResponseEntity.ok(produtosPage);
+		List<Integer> ids=URL.decodeToList(categorias);
+		String nomeDecode=URL.decodeParam(nome);
+		Page<Produto> produtosPage= service.search(nomeDecode, ids, page, linePerPage, orderby, direction);
+		Page<ProdutoDTO> listDto=produtosPage.map(obj->new ProdutoDTO(obj));
+		return ResponseEntity.ok().body(listDto);
 	}
 }

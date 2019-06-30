@@ -2,6 +2,8 @@ package br.com.compra.dto;
 
 import java.io.Serializable;
 
+import br.com.compra.domain.Produto;
+
 public class ProdutoDTO implements Serializable {
 
 	
@@ -14,6 +16,11 @@ public class ProdutoDTO implements Serializable {
 	private Double preco;
 	
 	public ProdutoDTO() {}
+	public ProdutoDTO(Produto obj) {
+		this.id=obj.getId();
+		this.nome=obj.getNome();
+		this.preco=obj.getPreco();
+	}
 
 	public Integer getId() {
 		return id;

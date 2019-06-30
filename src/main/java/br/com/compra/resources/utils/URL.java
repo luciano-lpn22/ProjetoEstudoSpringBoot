@@ -1,9 +1,9 @@
 package br.com.compra.resources.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class URL {
 
@@ -17,5 +17,14 @@ public class URL {
 		return list;
 		//lambida
 		//return Arrays.asList(decode.split(",")).stream().map( x->Integer.parseInt(x)).collect(Collectors.toList());
+	}
+
+	public static String decodeParam(String o) {
+		
+		try {
+			return URLDecoder.decode(o,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
 	}
 }
