@@ -50,7 +50,7 @@ public class Cliente implements Serializable{
 		this.nome=nome;
 		this.email=email;
 		this.cpfOuCnpj=cpfOuCnpj;
-		this.tipo=tipo.getCod();
+		this.tipo= tipo==null ? null :tipo.getCod() ;
 	}
 	public Cliente(String nome, String email) {
 		this.nome=nome;
@@ -62,9 +62,7 @@ public class Cliente implements Serializable{
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
-	}
+	
 	public Set<String> getTelefones() {
 		return telefones;
 	}
@@ -107,7 +105,8 @@ public class Cliente implements Serializable{
 		return TipoCliente.toEnum(this.tipo);
 	}
 	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo.getCod();
+		
+		this.tipo =tipo.getCod();
 	}
 	@Override
 	public int hashCode() {

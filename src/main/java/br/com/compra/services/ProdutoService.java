@@ -39,4 +39,8 @@ public class ProdutoService {
 		List<Categoria> categorias=repoCategoria.findAllById(ids); 
 		return repo.findDistinctByNomeContainingAndCategoriasIn(nome,categorias,request);
 	}
+
+	public Optional<Produto> findById(Integer id) {
+		return repo.findById(id);
+	}
 }

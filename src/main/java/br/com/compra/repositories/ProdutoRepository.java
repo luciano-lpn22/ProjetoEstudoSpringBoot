@@ -1,12 +1,11 @@
 package br.com.compra.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.compra.domain.Categoria;
@@ -25,5 +24,6 @@ public interface ProdutoRepository extends JpaRepository<Produto,Integer>{
 	//pode ser utilizar este medodo abaixo em substitição da query acima, onde o ByNome corresponde ao primerio parametro e categorias ao segundo parametros
 	public Page<Produto> findDistinctByNomeContainingAndCategoriasIn(String nome,List<Categoria> categorias, Pageable pageRequest);	
 		
+	
 
 }
