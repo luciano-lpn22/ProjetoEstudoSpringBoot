@@ -110,7 +110,7 @@ public class DBService {
 		cid3.setEstado(est2);
 		cid1.setEstado(est1);
 		
-		Cliente cli1= new Cliente("Maria Silva ", "maria@gmail.com","36378912377",TipoCliente.PESSOAFISICA);
+		Cliente cli1= new Cliente("Maria Silva ", "luciano_lpn22@yahoo.com.br","36378912377",TipoCliente.PESSOAFISICA);
 		cli1.getTelefones().addAll(Arrays.asList("27363323","92838393"));
 		
 		
