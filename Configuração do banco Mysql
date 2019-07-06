@@ -1,0 +1,7 @@
+ /*Configuração do banco de dados MYSQL no Claud HEROKU url obtida no heroku*/
+ mysql://b580174a278eda:7ddaba73@us-cdbr-iron-east-02.cleardb.net/heroku_249f1d0672d382e?reconnect=true
+ 
+ 
+ /*Configuração a conexao do projeto para o banco do heroku*/
+ mysql --host=us-cdbr-iron-east-02.cleardb.net --user=b580174a278eda --password=7ddaba73 --reconnect heroku_249f1d0672d382e < arquivo.sql
+ 

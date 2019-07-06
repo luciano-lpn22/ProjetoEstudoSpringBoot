@@ -17,7 +17,14 @@ public class TestConfig {
 	private DBService dbService;
 	@Bean
 	public boolean instantiateDataBase() throws ParseException {
-		dbService.instantiateTestDataBase();
+		try {
+			dbService.instantiateTestDataBase();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+		}
 		return true;
 	}
 	

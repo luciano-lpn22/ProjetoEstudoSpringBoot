@@ -25,7 +25,12 @@ public class DevConfig {
 		if (!strategy.equals("create")) {
 			return false;
 		}
-		service.instantiateTestDataBase();
+		try {
+			service.instantiateTestDataBase();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
