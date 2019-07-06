@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import br.com.compra.services.DBService;
+import br.com.compra.services.MocMailService;
 
 @Configuration
 @Profile("test")
@@ -26,6 +27,11 @@ public class TestConfig {
 			
 		}
 		return true;
+	}
+	
+	@Bean
+	public MocMailService emailService() {
+		return new MocMailService();
 	}
 	
 	
