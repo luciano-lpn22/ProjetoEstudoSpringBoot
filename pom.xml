@@ -9,8 +9,8 @@
 		<version>2.1.5.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.curso</groupId>
-	<artifactId>cursomc</artifactId>
+	<groupId>br.com.compra</groupId>
+	<artifactId>compramc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cursomc</name>
 	<description>Demo project for Spring Boot</description>
