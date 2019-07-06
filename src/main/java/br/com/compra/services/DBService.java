@@ -2,10 +2,7 @@ package br.com.compra.services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -162,25 +159,5 @@ public class DBService {
 		
 		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
 		
-		List<Integer> list = new Vector<Integer>();
-		List<Thread> trThreads= 	new ArrayList<Thread>();
-		for (int i=0 ;i<10000;i++) {
-			Thread t= new Thread(new Runnable() {
-				
-				@Override
-				public void run() {
-					for (int x=0;x<10;x++) {
-						list.add(x);
-					}
-				}
-			});
-			t.start();
-			trThreads.add(t);
 		}
-		for (Thread thread : trThreads) {
-			thread.join();
-		}
-		System.out.println("totalttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
-		System.out.println(list.size());
-	}
 }

@@ -17,9 +17,10 @@ public class ProdConfig {
 	@Autowired
 	private DBService service;
 	
+
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
-	
+		
 	@Bean
 	public boolean instatiateDatabase() throws ParseException {
 		if (!strategy.equals("create")) {
@@ -32,6 +33,7 @@ public class ProdConfig {
 			e.printStackTrace();
 		}
 		return true;
+	
 	}
 	
 }
