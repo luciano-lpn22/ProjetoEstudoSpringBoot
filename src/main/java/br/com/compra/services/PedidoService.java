@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import br.com.compra.domain.ItemPedido;
 import br.com.compra.domain.PagamentoComBoleto;
 import br.com.compra.domain.Pedido;
-import br.com.compra.domain.Produto;
 import br.com.compra.domain.enums.EstadoPagamento;
 import br.com.compra.repositories.ItemPedidoRepository;
 import br.com.compra.repositories.PagamentoRepository;
@@ -36,6 +35,9 @@ public class PedidoService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
+	@Autowired
+	private ClienteService clienteService;
+	
 	public Pedido find(Integer id) {
 		Optional<Pedido> pedido=repository.findById(id);
 		return pedido.orElseThrow(()-> new ObjectNotFoundException("Objeto "+Pedido.class.getName()+" não encontrado ID "+id));
@@ -45,6 +47,7 @@ public class PedidoService {
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		obj.setInstante(new Date());
+		obj.setCliente(clienteService.find(obj.getCliente().getId()));
 		obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
 		obj.getPagamento().setPedido(obj);
 		if (obj.getPagamento() instanceof PagamentoComBoleto) {
@@ -57,11 +60,12 @@ public class PedidoService {
 		for(ItemPedido i:obj.getItens()) {
 			i.setDesconto(0.0);
 			i.setPedido(obj);
-			Optional<Produto> produto=produtoService.findById(i.getProduto().getId());
-			i.setPreco(produto.get().getPreco());
+			i.setProduto(produtoService.find(i.getProduto().getId()));
+			i.setPreco(i.getProduto().getPreco());
 		}
 		
 		itemPedidoRepository.saveAll(obj.getItens());
+		System.out.println(obj);
 		return obj;
 	}
 	
