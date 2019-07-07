@@ -70,7 +70,7 @@ public class Pedido implements Serializable {
 	private Set<ItemPedido> itens= new HashSet<ItemPedido>();
 	
 	
-	public Double getValorTottal() {
+	public Double getValorTotal() {
 		Double soma =0.0;
 		for(ItemPedido ip: itens) {
 			soma=soma+ip.getSubTotal();
@@ -164,7 +164,7 @@ public class Pedido implements Serializable {
 			builder.append(i.toString());
 		}
 		builder.append("Valor  Total: ");
-		builder.append(n.format(getValorTottal()));
+		builder.append(n.format(getValorTotal()));
 		return builder.toString();
 	}
 	
