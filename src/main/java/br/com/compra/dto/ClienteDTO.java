@@ -32,6 +32,7 @@ public class ClienteDTO implements Serializable{
 	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String email;
 	
+	
 
 	public Integer getId() {
 		return id;

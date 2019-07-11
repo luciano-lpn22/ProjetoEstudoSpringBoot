@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -45,7 +46,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 			.and().csrf().disable(); // desabilita recurso de segurança para armazenamento de senha em sessão, pois não utilizamos sessao
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.GET,PUBLIC_MATCHES_GET).permitAll() //permite acesso sem altenticação
-			.antMatchers(HttpMethod.GET,PUBLIC_MATCHES).permitAll() //permite acesso sem altenticação
+			.antMatchers(PUBLIC_MATCHES).permitAll() //permite acesso sem altenticação
 			.anyRequest().authenticated(); //para todas outros endPoint requer autenticação
 		//acessura que não vai existir sessão do usuario
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -57,5 +58,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 		final UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 }
