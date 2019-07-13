@@ -7,14 +7,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import br.com.compra.security.JWTAuthenticationFilter;
+import br.com.compra.security.JWTUtil;
 
 @Configuration
 @EnableWebSecurity
@@ -22,6 +27,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	Environment env;
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private JWTUtil jwtUtil;
 	
 	//liberando endpoint possiveis sem autenticação
 	private static final String [] PUBLIC_MATCHES= {
@@ -48,8 +58,17 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET,PUBLIC_MATCHES_GET).permitAll() //permite acesso sem altenticação
 			.antMatchers(PUBLIC_MATCHES).permitAll() //permite acesso sem altenticação
 			.anyRequest().authenticated(); //para todas outros endPoint requer autenticação
-		//acessura que não vai existir sessão do usuario
+
+		//adiciona a verificação de autenticação do token
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		//acessura que não vai existir sessão do usuario em cache
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
+	
+	//verifica o usuario e o tipo de criptografia
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 	
 	//permite acesso de qualquer origem

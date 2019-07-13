@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -78,7 +77,7 @@ public class Cliente implements Serializable{
 	
 	
 	
-	public Set<Perfil> Perfis() {
+	public Set<Perfil> getPerfis() {
 		return perfis.stream().map(p->Perfil.toEnum(p)).collect(Collectors.toSet());
 	}
 	public void addPerfis(Perfil perfil) {
