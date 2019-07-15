@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import br.com.compra.security.JWTAuthenticationFilter;
+import br.com.compra.security.JWTAuthorizationFilter;
 import br.com.compra.security.JWTUtil;
 
 @Configuration
@@ -41,8 +42,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	//liberando endpoint possiveis sem autenticação
 	private static final String [] PUBLIC_MATCHES_GET= {
 			"/produtos/**",
-			"/categorias/**"
-	};
+			"/categorias/**",
+			"/clientes/**",
+			};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -61,6 +63,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 
 		//adiciona a verificação de autenticação do token
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		//acessura que não vai existir sessão do usuario em cache
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
