@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -24,6 +25,7 @@ import br.com.compra.security.JWTUtil;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) //possibilita a configuração de metodo com conexao ao edpoint pre-estabelecida,edpoint por perfil de acesso
 public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -45,6 +47,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 			"/categorias/**",
 			"/clientes/**",
 			};
+	
+	//liberando endpoint possiveis sem autenticação
+		private static final String [] PUBLIC_MATCHES_POST= {
+				"/clientes/**"
+				};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -57,6 +64,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 		http.cors()//chama o metodo CorsConfigurationSource()
 			.and().csrf().disable(); // desabilita recurso de segurança para armazenamento de senha em sessão, pois não utilizamos sessao
 		http.authorizeRequests()
+			.antMatchers(HttpMethod.POST,PUBLIC_MATCHES_POST).permitAll()//permite acesso ao endpoint POST
 			.antMatchers(HttpMethod.GET,PUBLIC_MATCHES_GET).permitAll() //permite acesso sem altenticação
 			.antMatchers(PUBLIC_MATCHES).permitAll() //permite acesso sem altenticação
 			.anyRequest().authenticated(); //para todas outros endPoint requer autenticação
