@@ -6,8 +6,12 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import br.com.compra.domain.Cliente;
 import br.com.compra.domain.ItemPedido;
 import br.com.compra.domain.PagamentoComBoleto;
 import br.com.compra.domain.Pedido;
@@ -15,6 +19,8 @@ import br.com.compra.domain.enums.EstadoPagamento;
 import br.com.compra.repositories.ItemPedidoRepository;
 import br.com.compra.repositories.PagamentoRepository;
 import br.com.compra.repositories.PedidoRepository;
+import br.com.compra.security.UserSS;
+import br.com.compra.services.exceptions.AuthorizationException;
 import br.com.compra.services.exceptions.ObjectNotFoundException;
 @Service
 public class PedidoService {
@@ -73,5 +79,14 @@ public class PedidoService {
 		return obj;
 	}
 	
+	public Page<Pedido> findPage(Integer page,Integer linesPerPage,String orderby,String direction){
+		UserSS user = UserService.authenticated();
+		if (user==null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		PageRequest pageRequest=  PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderby);
+		Cliente cliente=clienteService.find(user.getId());
+		return repository.findByCliente(cliente, pageRequest);
+	}
 
 }

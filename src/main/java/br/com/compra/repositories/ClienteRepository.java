@@ -7,4 +7,5 @@ import br.com.compra.domain.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
 	Cliente findByEmail(String email);
+	
 }
