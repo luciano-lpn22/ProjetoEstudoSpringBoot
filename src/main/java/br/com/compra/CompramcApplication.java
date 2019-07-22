@@ -23,7 +23,7 @@ public class CompramcApplication implements  CommandLineRunner{
 		localFilePath="C:\\Users\\Public\\Pictures\\Sample Pictures\\Koala.jpg";
 		
 		
-		service.uploadFile(localFilePath);
+		
 		
 	}
 

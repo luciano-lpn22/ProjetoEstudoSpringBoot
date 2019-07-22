@@ -1,5 +1,6 @@
 package br.com.compra.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.compra.domain.Cidade;
 import br.com.compra.domain.Cliente;
@@ -34,8 +36,12 @@ public class ClienteService {
  
 	@Autowired
 	ClienteRepository repo;
+	
 	@Autowired
 	EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private S3Service s3Service;
 	public Cliente find(Integer id){
 		
 		UserSS user =UserService.authenticated();
@@ -111,5 +117,9 @@ public class ClienteService {
 		cliente= repo.save(cliente);
 		enderecoRepository.saveAll(cliente.getEnderecos());
 		return cliente;
+	}
+	
+	public URI uploadProfilePicture(MultipartFile multPart) {
+		return s3Service.uploadFile(multPart);		
 	}
 }

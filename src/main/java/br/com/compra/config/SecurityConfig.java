@@ -50,7 +50,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	
 	//liberando endpoint possiveis sem autenticação
 		private static final String [] PUBLIC_MATCHES_POST= {
-				"/clientes/**",
+				"/clientes",
+				"/clientes/picture",
 				"/auth/forgot/**"
 				};
 
