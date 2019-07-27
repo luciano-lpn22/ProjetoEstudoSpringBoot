@@ -44,7 +44,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	//liberando endpoint possiveis sem autenticação
 	private static final String [] PUBLIC_MATCHES_GET= {
 			"/produtos/**",
-			"/categorias/**"
+			"/categorias/**",
+			"/estados/**"
 			};
 	
 	//liberando endpoint possiveis sem autenticação
