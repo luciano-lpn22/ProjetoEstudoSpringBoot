@@ -78,8 +78,53 @@ public class DBService {
 		Produto p9 = new Produto("Abajour",100.00);
 		Produto p10 = new Produto("Pendente",180.00);
 		Produto p11 = new Produto("Shampoo",90.00);
+		Produto p12 = new Produto("Produto 12",10.00);
+		Produto p13 = new Produto("Produto 13",10.00);
+		Produto p14 = new Produto("Produto 14",10.00);
+		Produto p15 = new Produto("Produto 15",10.00);
+		Produto p16 = new Produto("Produto 16",10.00);
+		Produto p17 = new Produto("Produto 17",10.00);
+		Produto p18 = new Produto("Produto 18",10.00);
+		Produto p19 = new Produto("Produto 19",10.00);
+		Produto p20 = new Produto("Produto 20",10.00);
+		Produto p21 = new Produto("Produto 21",10.00);
+		Produto p22 = new Produto("Produto 22",10.00);
+		Produto p23 = new Produto("Produto 23",10.00);
+		Produto p24 = new Produto("Produto 24",10.00);
+		Produto p25 = new Produto("Produto 25",10.00);
+		Produto p26 = new Produto("Produto 26",10.00);
+		Produto p27 = new Produto("Produto 27",10.00);
+		Produto p28 = new Produto("Produto 28",10.00);
+		Produto p29 = new Produto("Produto 29",10.00);
+		Produto p30 = new Produto("Produto 30",10.00);
+		Produto p31 = new Produto("Produto 31",10.00);
+		Produto p32 = new Produto("Produto 32",10.00);
+		Produto p33 = new Produto("Produto 33",10.00);
+		Produto p34 = new Produto("Produto 34",10.00);
+		Produto p35 = new Produto("Produto 35",10.00);
+		Produto p36 = new Produto("Produto 36",10.00);
+		Produto p37 = new Produto("Produto 37",10.00);
+		Produto p38 = new Produto("Produto 38",10.00);
+		Produto p39 = new Produto("Produto 39",10.00);
+		Produto p40 = new Produto("Produto 40",10.00);
+		Produto p41 = new Produto("Produto 41",10.00);
+		Produto p42 = new Produto("Produto 42",10.00);
+		Produto p43 = new Produto("Produto 43",10.00);
+		Produto p44 = new Produto("Produto 44",10.00);
+		Produto p45 = new Produto("Produto 45",10.00);
+		Produto p46 = new Produto("Produto 46",10.00);
+		Produto p47 = new Produto("Produto 47",10.00);
+		Produto p48 = new Produto("Produto 48",10.00);
+		Produto p49 = new Produto("Produto 49",10.00);
+		Produto p50 = new Produto("Produto 50",10.00);
 		
-		c1.getProdutos().addAll(Arrays.asList(p1,p3,p2));
+		
+		
+		c1.getProdutos().addAll(Arrays.asList(p1 ,p2 ,p3 ,p4 ,p5 ,p6 ,p7 ,p8 ,p9 ,p10,
+											  p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,
+											  p21,p22,p23,p24,p25,p26,p27,p28,p29,p30,
+											  p31,p32,p33,p34,p35,p36,p37,p38,p39,p40,
+											  p41,p42,p43,p44,p45,p46,p47,p48,p49,p50));
 		c2.getProdutos().addAll(Arrays.asList(p2,p4));
 		c3.getProdutos().addAll(Arrays.asList(p5,p6));
 		c4.getProdutos().addAll(Arrays.asList(p1,p2,p3,p7));
@@ -100,6 +145,46 @@ public class DBService {
 		p9.getCategorias().addAll(Arrays.asList(c6));
 		p10.getCategorias().addAll(Arrays.asList(c6));
 		p11.getCategorias().addAll(Arrays.asList(c7));
+		
+		p12.getCategorias().addAll(Arrays.asList(c1));
+		p13.getCategorias().addAll(Arrays.asList(c1));
+		p14.getCategorias().addAll(Arrays.asList(c1));
+		p15.getCategorias().addAll(Arrays.asList(c1));
+		p16.getCategorias().addAll(Arrays.asList(c1));
+		p17.getCategorias().addAll(Arrays.asList(c1));
+		p18.getCategorias().addAll(Arrays.asList(c1));
+		p19.getCategorias().addAll(Arrays.asList(c1));
+		p20.getCategorias().addAll(Arrays.asList(c1));
+		p21.getCategorias().addAll(Arrays.asList(c1));
+		p22.getCategorias().addAll(Arrays.asList(c1));
+		p23.getCategorias().addAll(Arrays.asList(c1));
+		p24.getCategorias().addAll(Arrays.asList(c1));
+		p25.getCategorias().addAll(Arrays.asList(c1));
+		p26.getCategorias().addAll(Arrays.asList(c1));
+		p27.getCategorias().addAll(Arrays.asList(c1));
+		p28.getCategorias().addAll(Arrays.asList(c1));
+		p29.getCategorias().addAll(Arrays.asList(c1));
+		p30.getCategorias().addAll(Arrays.asList(c1));
+		p31.getCategorias().addAll(Arrays.asList(c1));
+		p32.getCategorias().addAll(Arrays.asList(c1));
+		p33.getCategorias().addAll(Arrays.asList(c1));
+		p34.getCategorias().addAll(Arrays.asList(c1));
+		p35.getCategorias().addAll(Arrays.asList(c1));
+		p36.getCategorias().addAll(Arrays.asList(c1));
+		p37.getCategorias().addAll(Arrays.asList(c1));
+		p38.getCategorias().addAll(Arrays.asList(c1));
+		p39.getCategorias().addAll(Arrays.asList(c1));
+		p40.getCategorias().addAll(Arrays.asList(c1));
+		p41.getCategorias().addAll(Arrays.asList(c1));
+		p42.getCategorias().addAll(Arrays.asList(c1));
+		p43.getCategorias().addAll(Arrays.asList(c1));
+		p44.getCategorias().addAll(Arrays.asList(c1));
+		p45.getCategorias().addAll(Arrays.asList(c1));
+		p46.getCategorias().addAll(Arrays.asList(c1));
+		p47.getCategorias().addAll(Arrays.asList(c1));
+		p48.getCategorias().addAll(Arrays.asList(c1));
+		p49.getCategorias().addAll(Arrays.asList(c1));
+		p50.getCategorias().addAll(Arrays.asList(c1));
 		
 		Estado est1= new Estado("Minas Gerais");
 		Estado est2= new Estado("São Paulo");
@@ -154,7 +239,11 @@ public class DBService {
 		
 		
 		categoriaRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8));
-		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11));
+		produtoRepository.saveAll(Arrays.asList(p1 ,p2 ,p3 ,p4 ,p5 ,p6 ,p7 ,p8 ,p9 ,p10,
+												p11,p12,p13,p14,p15,p16,p17,p18,p19,p20,
+				  								p21,p22,p23,p24,p25,p26,p27,p28,p29,p30,
+				  								p31,p32,p33,p34,p35,p36,p37,p38,p39,p40,
+				  								p41,p42,p43,p44,p45,p46,p47,p48,p49,p50));
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1,cid2,cid3));
