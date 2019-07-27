@@ -35,14 +35,9 @@ public class UserSS implements UserDetails{
 		this.authorities = perfis.stream().map(x->new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toList());
 	}
 
-
-
-
-
 	public Integer getId() {
 		return id;
 	}
-
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

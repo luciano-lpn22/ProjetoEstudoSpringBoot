@@ -89,6 +89,22 @@ public class ClienteService {
 	public List<Cliente> findAll() {
 		return repo.findAll();
 	}
+	
+	public Cliente  findByEmail(String email) {
+		UserSS user =UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso Negado");
+		}
+		
+		Cliente cli=repo.findByEmail(email);
+		if(cli==null) {
+			throw new ObjectNotFoundException(
+							"Objeto não encontrado! ID:"+user.getId()+", tipo:"+Cliente.class.getName());
+		}
+		
+		return cli;
+		
+	}
 	public Page<Cliente> findPage(Integer pagina, Integer linePerPage, String orderby, String direction) {
 		PageRequest page=PageRequest.of(pagina, linePerPage, Direction.valueOf(direction), orderby);
 		return repo.findAll(page);
@@ -142,4 +158,6 @@ public class ClienteService {
 		String fileName=prefix+user.getId()+".jpg";
 		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
+	
+	
 }

@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +40,7 @@ public class ClienteResource {
 		Cliente cliente= service.find(id);
 		return  ResponseEntity.ok(cliente);
 	} 
+	
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO dto,@PathVariable Integer id){
@@ -46,6 +49,7 @@ public class ClienteResource {
 		service.update(cliente);
 		return ResponseEntity.noContent().build();
 	}
+	
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
@@ -84,11 +88,18 @@ public class ClienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	
 	@RequestMapping(value = "/picture",method = RequestMethod.POST)
 	public ResponseEntity<Void> uploadProfilePictory(@RequestParam(name = "file") MultipartFile multPart){
 		URI uri=service.uploadProfilePicture(multPart);
 		return ResponseEntity.created(uri).build();
 		
+	}
+	
+	@RequestMapping(value="/email",method=RequestMethod.GET)
+	public ResponseEntity<Cliente> findEmail(@RequestParam(value = "value")String email){
+		Cliente cli=service.findByEmail(email);	
+		return ResponseEntity.ok(cli);
 	}
 	
 }
